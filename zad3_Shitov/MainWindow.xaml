@@ -1,0 +1,105 @@
+﻿<Window x:Class="zad3_Shitov.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Дорожные работы" Height="700" Width="900">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <TabControl>
+            <!-- Вкладка Обычные дороги -->
+            <TabItem Header="Обычные дороги">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="5">
+                        <TextBlock Text="Введите название дорожной организации" Background="AliceBlue"/>
+                        <TextBox x:Name="txtContractor" Margin="0,5" Background="AliceBlue"/>
+                        <TextBlock Text="Введите кол-во рабочих" Background="AntiqueWhite"/>
+                        <TextBox x:Name="txtWorkersCount" Margin="0,5" Tag="Рабочие" Background="AntiqueWhite"/>
+                        <TextBlock Text="Введите ширину дороги (м)" Background="Aqua"/>
+                        <TextBox x:Name="txtWidth" Margin="0,5" Tag="Ширина" Background="Aqua"/>
+                        <TextBlock Text="Введите длину дороги (м)" Background="Aquamarine"/>
+                        <TextBox x:Name="txtLength" Margin="0,5" Tag="Длина" Background="Aquamarine"/>
+                        <TextBlock Text="Введите массу дорожного покрытия на 1 кв.м (кг)" Background="Beige"/>
+                        <TextBox x:Name="txtMass" Margin="0,5" Tag="Масса" Background="Beige"/>
+                        <Button x:Name="btnAddRoadWork" Click="btnAddRoadWork_Click" Content="Добавить" Margin="0,5" Height="30"/>
+                        <Button x:Name="btnClearRoadWork" Click="btnDeleteSelectedRoad_Click" Content="Очистить" Margin="0,5" Height="30"/>
+                        <Button x:Name="btnTestAddOverload" Click="btnTestAddOverload_Click" Content="Добавление тестовой работы(перегрузка)" Margin="0,5" Height="30"/>
+                        <Button x:Name="btnTestClearData" Click="btnTestClearData_Click" Content="Очистка всех параметров(перегрузка)" Margin="0,5" Height="30"/>
+                        <Button x:Name="btnClear" Click="btnClearAllRoad_Click" Content="Полностью очистить список" Margin="0,5" Height="30"/>
+                    </StackPanel>
+
+                    <ListBox x:Name="lstRoadWorks" Grid.Column="1" Margin="5"/>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка Укреплённые дороги -->
+            <TabItem Header="Укреплённые дороги">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="68"/>
+                        <ColumnDefinition Width="232"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="5" Grid.ColumnSpan="2">
+                        <TextBlock Text="Введите название дорожной организации" Background="AliceBlue"/>
+                        <TextBox x:Name="txtReinfContractor" Margin="0,5" Background="AliceBlue"/>
+
+                        <TextBlock Text="Введите кол-во рабочих" Background="AntiqueWhite"/>
+                        <TextBox x:Name="txtReinfWorkersCount" Margin="0,5" Tag="Рабочие" Background="AntiqueWhite"/>
+
+                        <TextBlock Text="Введите ширину дороги (м)" Background="Aqua"/>
+                        <TextBox x:Name="txtReinfWidth" Margin="0,5" Tag="Ширина" Background="Aqua"/>
+
+                        <TextBlock Text="Введите длину дороги (м)" Background="Aquamarine"/>
+                        <TextBox x:Name="txtReinfLength" Margin="0,5" Tag="Длина" Background="Aquamarine"/>
+
+                        <TextBlock Text="Введите массу дорожного покрытия на 1 кв.м (кг)" Background="Beige"/>
+                        <TextBox x:Name="txtReinfMass" Margin="0,5" Tag="Масса" Background="Beige"/>
+
+                        <TextBlock Text="Выберите коэффициент прочности P (3-10)" Background="Bisque"/>
+                        <ComboBox x:Name="cmbCoefficient" Margin="0,5" Background="Bisque">
+                            <ComboBoxItem>3</ComboBoxItem>
+                            <ComboBoxItem>4</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">5</ComboBoxItem>
+                            <ComboBoxItem>6</ComboBoxItem>
+                            <ComboBoxItem>7</ComboBoxItem>
+                            <ComboBoxItem>8</ComboBoxItem>
+                            <ComboBoxItem>9</ComboBoxItem>
+                            <ComboBoxItem>10</ComboBoxItem>
+                        </ComboBox>
+
+                        <TextBlock Text="Выберите тип техники" Background="BlanchedAlmond"/>
+                        <ComboBox x:Name="cmbType" Margin="0,5" Background="BlanchedAlmond">
+                            <ComboBoxItem>Бульдозер</ComboBoxItem>
+                            <ComboBoxItem>Экскаватор</ComboBoxItem>
+                            <ComboBoxItem>Каток</ComboBoxItem>
+                            <ComboBoxItem>Асфальтоукладчик</ComboBoxItem>
+                        </ComboBox>
+
+                        <TextBlock Text="Введите стоимость за метр (тыс. руб)" Background="BurlyWood"/>
+                        <TextBox x:Name="txtPrice" Margin="0,5" Tag="Цена" Background="BurlyWood"/>
+
+                        <Button x:Name="btnAddReinfRoad" Click="btnAddReinfRoad_Click" Content="Добавить укреплённую дорогу" Margin="0,5" Height="30"/>
+                        <Button x:Name="btnClearReinfRoadWork" Click="btnDeleteSelectedReinRoad_Click" Content="Очистить" Margin="0,5" Height="30"/>
+                    </StackPanel>
+
+                    <ListBox x:Name="lstReinfRoads" Grid.Column="2" Margin="5"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- Статистика -->
+        <GroupBox Grid.Row="1" Header="Статистика (LINQ)">
+            <TextBlock x:Name="txtStats" FontSize="13" Margin="5"/>
+        </GroupBox>
+    </Grid>
+</Window>
