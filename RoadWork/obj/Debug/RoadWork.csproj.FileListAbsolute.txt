@@ -1,0 +1,5 @@
+D:\Shitov\RoadWork\bin\Debug\RoadWork.dll
+D:\Shitov\RoadWork\bin\Debug\RoadWork.pdb
+D:\Shitov\RoadWork\obj\Debug\RoadWork.csproj.CoreCompileInputs.cache
+D:\Shitov\RoadWork\obj\Debug\RoadWork.dll
+D:\Shitov\RoadWork\obj\Debug\RoadWork.pdb
